@@ -1,5 +1,9 @@
 import express, { Router } from "express";
 
+import{
+    register
+}from "../controller/registerStudent"
+
 import {
   getStudent,
   studentUpdate,
@@ -10,12 +14,12 @@ const routes = express.Router();
 
 router
 .route("/")
-.get(getSpeciality)
-.post(insertEspeciality);
+.get(getStudent)
+.post(register);
 
 router
 .route("/:id")
-.put(especialityUpdate)
-.delete(especialityDelete);
+.put(  studentUpdate,)
+.delete(studentDelete);
 
 export default router

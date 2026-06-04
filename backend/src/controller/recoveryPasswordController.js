@@ -8,7 +8,7 @@ import { config } from "../../config"
 import studentsModel from "../models/students"
 
 
-const recoveryPasswordController = ();
+const recoveryPasswordController = {};
 
 recoveryPasswordController.requestCode = async (req, res) => {
     try {
