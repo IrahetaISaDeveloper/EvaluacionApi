@@ -5,9 +5,9 @@ import {
   insertEnrollment,
   enrollmentUpdate,
   enrollmentDelete,
-} from "../controller/enrollment.js";
+} from "../controller/enrollmentController.js";
 
-const routes = express.Router();
+const router = express.Router();
 
 router
 .route("/")
@@ -19,4 +19,4 @@ router
 .put(enrollmentUpdate)
 .delete(enrollmentDelete);
 
-export default router
+export default router;

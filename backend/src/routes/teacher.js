@@ -4,9 +4,9 @@ import {
   getTeachers,
   teachersUpdate,
   teacherDelete,
-} from "../controller/teachersController";
+} from "../controller/teachersController.js";
 
-const routes = express.Router();
+const router = express.Router();
 
 router
 .route("/")
@@ -14,7 +14,7 @@ router
 
 router
 .route("/:id")
-.put(  teachersUpdate,)
+.put(teachersUpdate)
 .delete(teacherDelete);
 
-export default router
+export default router;

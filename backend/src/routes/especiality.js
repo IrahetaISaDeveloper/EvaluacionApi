@@ -7,7 +7,7 @@ import {
   especialityDelete,
 } from "../controller/especiality.js";
 
-const routes = express.Router();
+const router = express.Router();
 
 router
 .route("/")
@@ -19,4 +19,4 @@ router
 .put(especialityUpdate)
 .delete(especialityDelete);
 
-export default router
+export default router;

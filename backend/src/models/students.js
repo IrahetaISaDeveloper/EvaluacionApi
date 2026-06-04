@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 const studentSchema = new Schema(
   {
@@ -18,7 +18,7 @@ const studentSchema = new Schema(
       type: Date,
     },
     speciality_id: {
-      type: mongoose.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "especiality",
     },
     carnet: {

@@ -7,7 +7,7 @@ import {
   subjectDelete,
 } from "../controller/subjectController.js";
 
-const routes = express.Router();
+const router = express.Router();
 
 router.route("/")
 .get(getSubject)
