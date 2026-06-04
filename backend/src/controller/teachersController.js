@@ -6,9 +6,9 @@ export const getTeachers = async(req, res) =>{
 }
 
 export const teachersUpdate = async(req, res) =>{
-    const {name, lastname,email, password, phone, hiredate} = req.body;
+    const {name, lastname,email, password, phone, hireDate, isActive, isVerified, loginAttempts, timeOut} = req.body;
     await teachersModelModels.findByIdAndUpdate(req.params.id,{
-        name, lastname,email, password, phone, hiredate
+        name, lastname,email, password, phone, hireDate, isActive, isVerified, loginAttempts, timeOut
     }, {new: true})
     res.json({message: "Teacher updated"})
 }

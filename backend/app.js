@@ -4,9 +4,17 @@ import cors from "cors"
 import limiter from "./middlewares/rateLimiter.js"
 
 import logout from "./src/routes/logout.js"
+import registerStudent from "./src/routes/registerStudent.js"
+import registerTeacher from "./src/routes/registerTeacher.js"
+import recoveryTeacher from "./src/routes/recoveryTeacher.js"
+import recoveryStudent from "./src/routes/recoveryStudent.js"
+import students from "./src/routes/student.js"
+import teachers from "./src/routes/teachers.js"
+import subject from "./src/routes/subject.js"
+import especiality from "./src/routes/especiality.js"
+import enrollment from "./src/routes/enrollment.js"
 
 const app = express()
-app.use(limiter)
 
 app.use(cors({
     origin: ["http://localhost:5173","http://localhost:5174"],
@@ -16,6 +24,21 @@ app.use(cors({
 app.use(cookieParser())
 
 app.use(express.json())
+//students
+app.use("/api/registerStudent", registerStudent)
+app.use("/api/recoveryStudentPassword", recoveryStudent)
+app.use("/api/students", students)
+//teachers
+app.use("/api/registerTeacher", registerTeacher)
+app.use("/api/recoveryPasswordTeacher", recoveryTeacher)
+app.use("/api/teachers", teachers)
+
 app.use("/api/logout", logout)
+//subject
+app.use("/api/subject", subject)
+//especiality
+app.use("/api/especiality", especiality)
+//enrollments
+app.use("/api/enrollments", enrollment)
 
 export default app

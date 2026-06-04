@@ -3,31 +3,31 @@ import crypto from "crypto";
 import jsonwebtoken from "jsonwebtoken"; 
 import bcryptjs from "bcryptjs"; 
  
-import studentModel from "../models/students.js";
+import teacherModel from "../models/teachers.js";
  
 import { config } from "../../config.js";
  
-const registerStudent = {};
+const registerTeacher = {};
  
-registerStudent.register = async (req, res) => {
+registerTeacher.register = async (req, res) => {
   const {
     name,
     lastName,
     birthdate,
     email,
     password,
-    speciality_id,
-    carnet,
     phone,
+    hireDate,
+    isActive,
     isVerified,
     loginAttempts,
     timeOut,
   } = req.body;
  
   try {
-    const existStudent = await studentModel.findOne({ email });
-    if (existStudent) {
-      return res.status(400).json({ message: "Student already exist" });
+    const existTeacher = await teacherModel.findOne({ email });
+    if (existTeacher) {
+      return res.status(400).json({ message: "Teacher already exist" });
     }
  
     const passwordHash = await bcryptjs.hash(password, 10);
@@ -42,9 +42,9 @@ registerStudent.register = async (req, res) => {
         lastName,
         birthdate,
         password: passwordHash,
-        speciality_id,
-        carnet,
         phone,
+        hireDate,
+        isActive,
         isVerified,
         loginAttempts,
         timeOut,
@@ -80,7 +80,7 @@ registerStudent.register = async (req, res) => {
       }
       res
         .status(200)
-        .json({ message: "Student registered, verify your email" });
+        .json({ message: "Teacher registered, verify your email" });
     });
   } catch (error) {
     console.log("error" + error);
@@ -88,7 +88,7 @@ registerStudent.register = async (req, res) => {
   }
 };
  
-registerStudent.verifyCode = async (req, res) => {
+registerTeacher.verifyCode = async (req, res) => {
   try {
     const { verificationCodeRequest } = req.body;
  
@@ -101,10 +101,10 @@ registerStudent.verifyCode = async (req, res) => {
       return res.status(400).json({ message: "Invalid code" });
     }
  
-    await newStudent.save();
+    await newTeacher.save();
  
-    const student = await studentModel.findOne({ email });
-    student.isVerified = true;
+    const teacher = await teacherModel.findOne({ email });
+    teacher.isVerified = true;
     await student.save();
     //
     res.clearCookie("verificationToken");
@@ -116,5 +116,5 @@ registerStudent.verifyCode = async (req, res) => {
   }
 };
  
-export default registerStudent;
+export default registerTeacher;
  
