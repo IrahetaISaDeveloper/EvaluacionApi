@@ -1,5 +1,5 @@
 import app from "./app.js"
-import ".database.js"
+import "./database.js"
 
 async function main(){
     app.listen(4000);
